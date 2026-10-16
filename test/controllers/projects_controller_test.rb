@@ -34,6 +34,12 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".mission", text: /\+110 XP/
   end
 
+  test "groups are collapsible and start open" do
+    get project_path(@project)
+    assert_select "details.group[open][data-controller='group-toggle']", count: 2
+    assert_select "details.group summary h2", text: "Alimentação"
+  end
+
   test "a mission without skill has no tag" do
     challenges(:caminhada).update!(skill: nil)
     get project_path(@project)

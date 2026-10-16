@@ -1,0 +1,45 @@
+.group {
+  margin-top: 1.5rem;
+}
+
+.group__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.group__summary::-webkit-details-marker {
+  display: none;
+}
+
+.group__summary::before {
+  content: "▶";
+  color: var(--gold);
+  font-size: 12px;
+  transition: transform 0.15s steps(2);
+}
+
+.group[open] > .group__summary::before {
+  transform: rotate(90deg);
+}
+
+.group__summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.group__title {
+  font-family: "Press Start 2P", monospace;
+  color: var(--gold);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.group__summary .muted {
+  font-size: 0.8rem;
+}

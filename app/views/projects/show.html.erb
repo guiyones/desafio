@@ -24,11 +24,15 @@
 </nav>
 
 <% @groups.each do |group| %>
-  <section class="group">
-    <h2 class="section-title">▶ <%= group.name %> <%= link_to "editar", edit_group_path(group), class: "muted" %></h2>
+  <details class="group" id="<%= dom_id(group) %>" open
+           data-controller="group-toggle" data-action="toggle->group-toggle#save">
+    <summary class="group__summary">
+      <h2 class="group__title"><%= group.name %></h2>
+      <%= link_to "editar", edit_group_path(group), class: "muted" %>
+    </summary>
 
     <%= render group.challenges %>
 
     <p><%= link_to "Novo desafio", new_group_challenge_path(group), class: "button" %></p>
-  </section>
+  </details>
 <% end %>
