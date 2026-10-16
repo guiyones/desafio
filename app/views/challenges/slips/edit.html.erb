@@ -3,7 +3,7 @@
 <h1><%= @challenge.name %> · dia <%= @challenge.project.day_number(@slip.day) %></h1>
 <p class="muted"><%= @slip.day.strftime("%d/%m/%Y") %></p>
 
-<%= form_with model: @slip, url: challenge_slip_path(@challenge, @slip.day.iso8601), method: :patch do |form| %>
+<%= form_with model: @slip, url: challenge_slip_path(@challenge, @slip.day.iso8601) do |form| %>
   <p>
     <%= form.label :note, "Nota" %>
     <%= form.text_field :note, placeholder: "o que rolou?", autofocus: true %>

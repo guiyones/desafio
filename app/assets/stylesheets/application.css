@@ -65,12 +65,12 @@ a { color: inherit; }
 
 .days {
   display: grid;
-  grid-template-columns: repeat(25, 1fr);
+  grid-template-columns: repeat(25, minmax(0, 1fr));
   gap: 3px;
 }
 
 @media (max-width: 40rem) {
-  .days { grid-template-columns: repeat(7, 1fr); }
+  .days { grid-template-columns: repeat(7, minmax(0, 3rem)); }
 }
 
 .day form { margin: 0; }
@@ -92,6 +92,11 @@ a { color: inherit; }
 
 .day--today :is(button, a, span) {
   outline: 2px solid var(--today);
+  outline-offset: 1px;
+}
+
+.day :is(button, a):focus-visible {
+  outline: 3px solid var(--slipped);
   outline-offset: 1px;
 }
 
