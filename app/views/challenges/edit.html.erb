@@ -11,6 +11,11 @@
       <%= form.text_field :name %>
     </p>
 
+    <p>
+      <%= form.label :skill_id, "Skill" %>
+      <%= form.collection_select :skill_id, Skill.order(:name), :id, ->(s) { "#{s.icon} #{s.name}" }, include_blank: "— nenhuma —" %>
+    </p>
+
     <%= form.submit "Salvar" %>
   <% end %>
 </div>

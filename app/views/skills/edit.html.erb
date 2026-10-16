@@ -1,0 +1,12 @@
+<% content_for :title, "Editar #{@skill.name}" %>
+
+<h1 class="pixel">Editar skill</h1>
+
+<div class="box">
+  <%= render "form", skill: @skill %>
+</div>
+
+<p><%= button_to "Apagar skill", @skill, method: :delete, class: "button button--danger",
+      form: { data: { turbo_confirm: "Apagar a skill? Os desafios ficam sem skill." } } %></p>
+
+<p><%= link_to "Voltar", skills_path, class: "button" %></p>

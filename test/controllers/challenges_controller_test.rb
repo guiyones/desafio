@@ -11,11 +11,21 @@ class ChallengesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "new challenge form offers all skills" do
+    get new_group_challenge_path(@group)
+    assert_select "select[name='challenge[skill_id]'] option", count: 4
+  end
+
   test "creates a challenge" do
     assert_difference -> { @group.challenges.count } do
       post group_challenges_path(@group), params: { challenge: { name: "Sem fritura" } }
     end
     assert_redirected_to project_path(@project)
+  end
+
+  test "creates a challenge with a skill" do
+    post group_challenges_path(@group), params: { challenge: { name: "Sem fritura", skill_id: skills(:jejum).id } }
+    assert_equal skills(:jejum), Challenge.last.skill
   end
 
   test "rejects a blank name" do
