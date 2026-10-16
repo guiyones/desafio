@@ -1,0 +1,4 @@
+<%= turbo_stream.replace dom_id(@challenge, "day_#{@slip.day.iso8601}"),
+      partial: "challenges/day", locals: { challenge: @challenge, date: @slip.day } %>
+<%= turbo_stream.replace "perfect_days",
+      partial: "projects/perfect_days", locals: { project: @challenge.project } %>
