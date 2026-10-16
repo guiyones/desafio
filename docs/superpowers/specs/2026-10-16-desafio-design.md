@@ -43,6 +43,9 @@ Todos os `has_many` com `dependent: :destroy`.
 
 `config.time_zone = "America/Sao_Paulo"` e sempre `Date.current`.
 
+`starts_on` fica travado depois que existe algum vacilo no projeto (validação `on: :update`), pra
+nenhum vacilo ficar fora da janela de 75 dias.
+
 ### Estado de um dia (`Challenge#status_on(date)`)
 
 - `:future` — `date > Date.current`. Não pode ser marcado.
