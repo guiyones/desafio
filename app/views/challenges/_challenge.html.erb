@@ -2,7 +2,7 @@
 <article class="mission box" id="<%= dom_id(challenge) %>">
   <div class="mission__line">
     <h3 class="pixel"><%= challenge.name %> <%= link_to "editar", edit_challenge_path(challenge), class: "muted" %></h3>
-    <span class="pixel green">+<%= challenge.xp %> XP</span>
+    <%= render "challenges/xp", challenge: challenge %>
   </div>
 
   <% if challenge.skill %>

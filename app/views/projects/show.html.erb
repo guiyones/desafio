@@ -13,7 +13,7 @@
       <div class="hud__bar"><i style="width: <%= project_elapsed_percentage(@project) %>%"></i></div>
     </div>
   </div>
-  <p class="muted">⭐ <%= render "projects/perfect_days", project: @project %> · ✖ <%= @project.slips_count %> vacilos</p>
+  <%= render "projects/tally", project: @project %>
 </header>
 
 <nav class="actions">

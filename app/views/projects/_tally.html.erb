@@ -1,0 +1,2 @@
+<%# locals: (project:) %>
+<p class="muted" id="tally">⭐ <%= render "projects/perfect_days", project: project %> · ✖ <%= pluralize(project.slips_count, "vacilo") %></p>
