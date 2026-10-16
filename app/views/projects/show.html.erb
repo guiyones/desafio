@@ -1,5 +1,7 @@
 <% content_for :title, @project.name %>
 
+<%= level_up_banner(@groups.flat_map(&:challenges).filter_map(&:skill).uniq) %>
+
 <header class="hud box">
   <div class="hud__row">
     <div class="hud__avatar" role="img" aria-label="Avatar">🧙</div>
