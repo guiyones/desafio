@@ -1,0 +1,19 @@
+<% content_for :title, "Editar #{@challenge.name}" %>
+
+<h1>Editar desafio</h1>
+
+<%= form_with model: @challenge do |form| %>
+  <%= render "shared/errors", record: @challenge %>
+
+  <p>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name %>
+  </p>
+
+  <%= form.submit "Salvar" %>
+<% end %>
+
+<%= button_to "Apagar desafio", @challenge, method: :delete, class: "danger",
+      form: { data: { turbo_confirm: "Apagar o desafio e seus vacilos?" } } %>
+
+<p><%= link_to "Voltar", @challenge.project %></p>
