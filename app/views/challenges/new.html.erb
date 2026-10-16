@@ -1,0 +1,16 @@
+<% content_for :title, "Novo desafio" %>
+
+<h1>Novo desafio em <%= @group.name %></h1>
+
+<%= form_with model: [ @group, @challenge ] do |form| %>
+  <%= render "shared/errors", record: @challenge %>
+
+  <p>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name, autofocus: true %>
+  </p>
+
+  <%= form.submit "Criar desafio" %>
+<% end %>
+
+<p><%= link_to "Voltar", @group.project %></p>

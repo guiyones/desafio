@@ -1,0 +1,24 @@
+<% content_for :title, "Editar #{@project.name}" %>
+
+<h1>Editar projeto</h1>
+
+<%= form_with model: @project do |form| %>
+  <%= render "shared/errors", record: @project %>
+
+  <p>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :starts_on, "Início" %>
+    <%= form.date_field :starts_on %>
+  </p>
+
+  <%= form.submit "Salvar" %>
+<% end %>
+
+<%= button_to "Apagar projeto", @project, method: :delete, class: "danger",
+      form: { data: { turbo_confirm: "Apagar o projeto e todos os desafios?" } } %>
+
+<p><%= link_to "Voltar", @project %></p>

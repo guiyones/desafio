@@ -1,0 +1,19 @@
+<% content_for :title, "Editar #{@group.name}" %>
+
+<h1>Editar grupo</h1>
+
+<%= form_with model: @group do |form| %>
+  <%= render "shared/errors", record: @group %>
+
+  <p>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name %>
+  </p>
+
+  <%= form.submit "Salvar" %>
+<% end %>
+
+<%= button_to "Apagar grupo", @group, method: :delete, class: "danger",
+      form: { data: { turbo_confirm: "Apagar o grupo e seus desafios?" } } %>
+
+<p><%= link_to "Voltar", @group.project %></p>

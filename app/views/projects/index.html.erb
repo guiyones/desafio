@@ -1,0 +1,9 @@
+<h1>Projetos</h1>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li><%= link_to project.name, project %> <span class="muted"><%= project_progress(project) %></span></li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Novo projeto", new_project_path %></p>

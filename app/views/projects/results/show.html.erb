@@ -1,0 +1,52 @@
+<% content_for :title, "Resultado · #{@project.name}" %>
+
+<p><%= link_to "← #{@project.name}", @project %></p>
+
+<h1>Resultado</h1>
+
+<dl class="totals">
+  <dt>Dias decorridos</dt>
+  <dd id="elapsed_days_count"><%= @project.elapsed_days.count %> de <%= Project::DURATION %></dd>
+  <dt>Dias perfeitos</dt>
+  <dd id="perfect_days_count"><%= @project.perfect_days.size %></dd>
+  <dt>Vacilos</dt>
+  <dd id="slips_count"><%= @project.slips_count %></dd>
+</dl>
+
+<% @groups.each do |group| %>
+  <h2><%= group.name %> <span class="muted"><%= pluralize group.slips_count, "vacilo" %></span></h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Desafio</th>
+        <th>Vacilos</th>
+        <th>Cumpridos</th>
+        <th>%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% group.challenges.each do |challenge| %>
+        <tr>
+          <td><%= challenge.name %></td>
+          <td><%= challenge.slips_count %></td>
+          <td><%= challenge.kept_count %></td>
+          <td><%= challenge.kept_percentage %>%</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<h2>Vacilos</h2>
+
+<% timeline = @project.slips_timeline.load %>
+<% if timeline.any? %>
+  <ol class="timeline">
+    <% timeline.each do |slip| %>
+      <li>Dia <%= @project.day_number(slip.day) %> · <%= slip.challenge.name %><% if slip.note.present? %> · <%= slip.note %><% end %></li>
+    <% end %>
+  </ol>
+<% else %>
+  <p class="muted">Nenhum vacilo até agora.</p>
+<% end %>
