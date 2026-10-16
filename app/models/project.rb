@@ -1,6 +1,10 @@
 class Project < ApplicationRecord
   DURATION = 75
 
+  has_many :groups, dependent: :destroy
+  has_many :challenges, through: :groups
+  has_many :slips, through: :challenges
+
   validates :name, :starts_on, presence: true
 
   def ends_on

@@ -1,0 +1,11 @@
+refri:
+  group: alimentacao
+  name: Sem refrigerante
+
+doce:
+  group: alimentacao
+  name: Sem doce
+
+caminhada:
+  group: treino
+  name: Caminhar 30min
