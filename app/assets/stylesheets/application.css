@@ -62,29 +62,6 @@ h1 {
 .green { color: var(--green); }
 .red { color: var(--red); }
 
-/* Sizing only (no RPG colors yet) so the day grid on the project page stays
-   clickable until Task 3 restyles it. */
-.days {
-  display: grid;
-  grid-template-columns: repeat(25, minmax(0, 1fr));
-  gap: 3px;
-}
-
-@media (max-width: 40rem) {
-  .days { grid-template-columns: repeat(7, minmax(0, 3rem)); }
-}
-
-.day form { margin: 0; }
-
-.day button,
-.day a,
-.day span {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  padding: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;

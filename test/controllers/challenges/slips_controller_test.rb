@@ -15,6 +15,7 @@ class Challenges::SlipsControllerTest < ActionDispatch::IntegrationTest
     assert_turbo_stream action: :replace, target: "day_2026-10-10_challenge_#{@challenge.id}"
     assert_turbo_stream action: :replace, target: "perfect_days"
     assert_match edit_challenge_slip_path(@challenge, "2026-10-10"), response.body
+    assert_match "day--breaking", response.body
   end
 
   test "marks a slip without turbo" do

@@ -1,6 +1,13 @@
 <%# locals: (challenge:) %>
-<article class="challenge" id="<%= dom_id(challenge) %>">
-  <h3><%= challenge.name %> <%= link_to "editar", edit_challenge_path(challenge), class: "muted" %></h3>
+<article class="mission box" id="<%= dom_id(challenge) %>">
+  <div class="mission__line">
+    <h3 class="pixel"><%= challenge.name %> <%= link_to "editar", edit_challenge_path(challenge), class: "muted" %></h3>
+    <span class="pixel green">+<%= challenge.xp %> XP</span>
+  </div>
+
+  <% if challenge.skill %>
+    <span class="skill-tag"><%= challenge.skill.icon %> <%= challenge.skill.name %></span>
+  <% end %>
 
   <div class="days">
     <% challenge.project.days.each do |date| %>

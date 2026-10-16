@@ -1,23 +1,32 @@
 <% content_for :title, @project.name %>
 
-<header class="project-header">
-  <h1><%= @project.name %></h1>
-  <p class="muted"><%= project_progress(@project) %> · <%= render "projects/perfect_days", project: @project %></p>
-
-  <nav class="actions">
-    <%= link_to "Resultado", project_results_path(@project) %>
-    <%= link_to "Novo grupo", new_project_group_path(@project) %>
-    <%= link_to "Editar projeto", edit_project_path(@project) %>
-    <%= link_to "Novo projeto", new_project_path %>
-  </nav>
+<header class="hud box">
+  <div class="hud__row">
+    <div class="hud__avatar" role="img" aria-label="Avatar">🧙</div>
+    <div class="hud__info">
+      <p class="pixel"><%= @project.name %></p>
+      <p class="pixel gold">
+        <% if @project.status == :active %>fase <%= @project.phase_on(Date.current) %> · <% end %><%= project_progress(@project) %>
+      </p>
+      <div class="hud__bar"><i style="width: <%= project_elapsed_percentage(@project) %>%"></i></div>
+    </div>
+  </div>
+  <p class="muted">⭐ <%= render "projects/perfect_days", project: @project %> · ✖ <%= @project.slips_count %> vacilos</p>
 </header>
+
+<nav class="actions">
+  <%= link_to "Resultado", project_results_path(@project), class: "button" %>
+  <%= link_to "Novo grupo", new_project_group_path(@project), class: "button" %>
+  <%= link_to "Editar projeto", edit_project_path(@project), class: "button" %>
+  <%= link_to "Novo projeto", new_project_path, class: "button" %>
+</nav>
 
 <% @groups.each do |group| %>
   <section class="group">
-    <h2><%= group.name %> <%= link_to "editar", edit_group_path(group), class: "muted" %></h2>
+    <h2 class="section-title">▶ <%= group.name %> <%= link_to "editar", edit_group_path(group), class: "muted" %></h2>
 
     <%= render group.challenges %>
 
-    <p><%= link_to "Novo desafio", new_group_challenge_path(group) %></p>
+    <p><%= link_to "Novo desafio", new_group_challenge_path(group), class: "button" %></p>
   </section>
 <% end %>
