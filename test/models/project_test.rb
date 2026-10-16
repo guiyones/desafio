@@ -54,6 +54,18 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.errors.added?(:starts_on, :blank)
   end
 
+  test "blocks changing the start date once slips exist" do
+    @project.starts_on = Date.new(2026, 10, 2)
+    assert_not @project.valid?(:update)
+    assert_includes @project.errors[:starts_on], "não pode mudar depois de marcar vacilos"
+  end
+
+  test "allows changing the start date without slips" do
+    project = projects(:vazio)
+    project.starts_on = Date.new(2026, 10, 2)
+    assert project.valid?(:update)
+  end
+
   test "counts every slip" do
     travel_to_day Date.new(2026, 10, 12)
     assert_equal 3, @project.slips_count
@@ -71,6 +83,11 @@ class ProjectTest < ActiveSupport::TestCase
   test "no perfect days without challenges" do
     travel_to_day Date.new(2026, 10, 12)
     assert_empty projects(:vazio).perfect_days
+  end
+
+  test "no perfect days before the start" do
+    travel_to_day Date.new(2026, 9, 30)
+    assert_empty @project.perfect_days
   end
 
   test "timeline lists slips by day" do

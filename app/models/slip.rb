@@ -4,7 +4,7 @@ class Slip < ApplicationRecord
   delegate :project, to: :challenge
 
   validates :day, presence: true, uniqueness: { scope: :challenge_id }
-  validate :day_within_project, :day_not_in_future, if: :day
+  validate :day_within_project, :day_not_in_future, if: -> { day && challenge }
 
   private
     def day_within_project

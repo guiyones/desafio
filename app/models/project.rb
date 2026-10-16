@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   has_many :slips, through: :challenges
 
   validates :name, :starts_on, presence: true
+  validate :starts_on_locked, on: :update
 
   def ends_on
     starts_on + (DURATION - 1)
@@ -34,4 +35,9 @@ class Project < ApplicationRecord
   def elapsed_days
     starts_on..[ Date.current, ends_on ].min
   end
+
+  private
+    def starts_on_locked
+      errors.add :starts_on, "não pode mudar depois de marcar vacilos" if starts_on_changed? && slips.exists?
+    end
 end

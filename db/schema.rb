@@ -41,7 +41,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_174717) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id", "day"], name: "index_slips_on_challenge_id_and_day", unique: true
-    t.index ["challenge_id"], name: "index_slips_on_challenge_id"
   end
 
   add_foreign_key "challenges", "groups"

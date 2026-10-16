@@ -17,7 +17,7 @@ class Challenge < ApplicationRecord
   end
 
   def slips_count
-    slips.count
+    slips.size
   end
 
   def kept_count
@@ -31,6 +31,6 @@ class Challenge < ApplicationRecord
 
   private
     def slipped_dates
-      @slipped_dates ||= slips.pluck(:day).to_set
+      slips.map(&:day).to_set
     end
 end

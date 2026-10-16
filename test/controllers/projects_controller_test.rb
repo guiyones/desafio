@@ -58,6 +58,11 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Setenta e cinco", @project.reload.name
   end
 
+  test "rejects changing the start date once slips exist" do
+    patch project_path(@project), params: { project: { starts_on: "2026-10-02" } }
+    assert_response :unprocessable_content
+  end
+
   test "destroys a project" do
     assert_difference -> { Project.count } => -1, -> { Slip.count } => -3 do
       delete project_path(@project)

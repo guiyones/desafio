@@ -34,7 +34,9 @@ class SlipTest < ActiveSupport::TestCase
   end
 
   test "invalid twice on the same day" do
-    assert_not @challenge.slips.new(day: Date.new(2026, 10, 3)).valid?
+    slip = @challenge.slips.new(day: Date.new(2026, 10, 3))
+    assert_not slip.valid?
+    assert slip.errors.added?(:day, :taken, value: Date.new(2026, 10, 3))
   end
 
   test "invalid without a day" do
@@ -43,6 +45,11 @@ class SlipTest < ActiveSupport::TestCase
 
   test "editable after the project ends" do
     travel_to_day Date.new(2026, 12, 20)
+    assert @challenge.slips.new(day: Date.new(2026, 12, 14)).valid?
+  end
+
+  test "valid on day 75" do
+    travel_to_day Date.new(2026, 12, 14)
     assert @challenge.slips.new(day: Date.new(2026, 12, 14)).valid?
   end
 end

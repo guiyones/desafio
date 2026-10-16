@@ -36,4 +36,9 @@ class ChallengeTest < ActiveSupport::TestCase
     travel_to_day Date.new(2026, 9, 20)
     assert_equal 0, @challenge.kept_percentage
   end
+
+  test "kept count is capped after the project ends" do
+    travel_to_day Date.new(2026, 12, 20)
+    assert_equal 74, @challenge.kept_count
+  end
 end
