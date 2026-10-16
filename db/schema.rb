@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_16_174717) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_16_184943) do
   create_table "challenges", force: :cascade do |t|
     t.integer "group_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "skill_id"
     t.index ["group_id"], name: "index_challenges_on_group_id"
+    t.index ["skill_id"], name: "index_challenges_on_skill_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -34,6 +36,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_174717) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "icon", default: "⭐", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_skills_on_name", unique: true
+  end
+
   create_table "slips", force: :cascade do |t|
     t.integer "challenge_id", null: false
     t.date "day", null: false
@@ -44,6 +54,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_16_174717) do
   end
 
   add_foreign_key "challenges", "groups"
+  add_foreign_key "challenges", "skills"
   add_foreign_key "groups", "projects"
   add_foreign_key "slips", "challenges"
 end

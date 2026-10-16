@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   include Results
 
   DURATION = 75
+  PHASE_LENGTH = 15
 
   has_many :groups, dependent: :destroy
   has_many :challenges, through: :groups
@@ -34,6 +35,10 @@ class Project < ApplicationRecord
 
   def elapsed_days
     starts_on..[ Date.current, ends_on ].min
+  end
+
+  def phase_on(date)
+    (((day_number(date) - 1) / PHASE_LENGTH) + 1).clamp(1, DURATION / PHASE_LENGTH)
   end
 
   private

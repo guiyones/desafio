@@ -1,0 +1,11 @@
+controle:
+  name: Controle
+  icon: "🛡"
+
+resistencia:
+  name: Resistência
+  icon: "🚶"
+
+jejum:
+  name: Jejum
+  icon: "⏳"
