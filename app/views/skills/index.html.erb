@@ -1,0 +1,26 @@
+<% content_for :title, "Ficha do personagem" %>
+
+<%= level_up_banner(@character.skills) %>
+
+<header class="hud box">
+  <div class="hud__row">
+    <div class="hud__avatar" role="img" aria-label="Avatar">🧙</div>
+    <div class="hud__info">
+      <p class="pixel">PERSONAGEM</p>
+      <p class="pixel gold">NV <%= @character.level.number %></p>
+      <p class="muted"><%= @character.xp %> XP no total</p>
+    </div>
+  </div>
+</header>
+
+<h2 class="section-title">▶ SKILLS</h2>
+
+<% if @character.skills.empty? %>
+  <p>Crie sua primeira skill pra começar a ganhar XP.</p>
+<% else %>
+  <div class="stack">
+    <%= render @character.skills %>
+  </div>
+<% end %>
+
+<p><%= link_to "+ Nova skill", new_skill_path, class: "button" %></p>

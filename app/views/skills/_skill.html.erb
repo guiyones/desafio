@@ -1,0 +1,13 @@
+<%# locals: (skill:) %>
+<article class="skill-card box">
+  <div class="skill-card__icon" aria-hidden="true"><%= skill.icon %></div>
+  <div class="skill-card__body">
+    <p class="line"><span><%= skill.name %></span><span class="gold">NV <%= skill.level.number %></span></p>
+    <div class="skill-card__bar"><i style="width: <%= skill.level.xp_into * 100 / skill.level.xp_needed %>%"></i></div>
+    <p class="line muted">
+      <span><%= skill.level.xp_into %>/<%= skill.level.xp_needed %> XP</span>
+      <span><%= skill.active_challenges_count.zero? ? "nenhuma ativa" : pluralize(skill.active_challenges_count, "missão", plural: "missões") %></span>
+    </p>
+  </div>
+  <%= link_to "editar", edit_skill_path(skill), class: "muted" %>
+</article>

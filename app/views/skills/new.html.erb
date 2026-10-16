@@ -1,0 +1,9 @@
+<% content_for :title, "Nova skill" %>
+
+<h1 class="pixel">Nova skill</h1>
+
+<div class="box">
+  <%= render "form", skill: @skill %>
+</div>
+
+<p><%= link_to "Voltar", skills_path, class: "button" %></p>

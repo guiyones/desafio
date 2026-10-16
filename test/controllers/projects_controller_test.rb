@@ -28,6 +28,16 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".day--kept button[aria-label='Dia 4: marcar vacilo']", count: 3
     assert_select ".day--future span", count: 3 * 63
     assert_select ".day--today", count: 3
+    assert_select ".hud", text: /fase 1/
+    assert_select ".mission", count: 3
+    assert_select ".mission .skill-tag", text: /Controle/, count: 2
+    assert_select ".mission", text: /\+110 XP/
+  end
+
+  test "a mission without skill has no tag" do
+    challenges(:caminhada).update!(skill: nil)
+    get project_path(@project)
+    assert_select ".mission .skill-tag", count: 2
   end
 
   test "new" do

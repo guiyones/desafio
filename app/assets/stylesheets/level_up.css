@@ -1,0 +1,35 @@
+.lvlup {
+  text-align: center;
+  border: 3px solid var(--gold);
+  background: #5d275d;
+  padding: 10px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  animation: lvlup-blink 1s steps(2) infinite;
+}
+
+.lvlup__lines {
+  color: var(--text);
+  white-space: pre-line;
+  margin-top: 6px;
+}
+
+.lvlup__dismiss {
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: var(--text);
+  background: var(--dim);
+  border: 2px solid var(--gold);
+  padding: 4px 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.lvlup__dismiss:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+@keyframes lvlup-blink {
+  50% { border-color: var(--text); }
+}

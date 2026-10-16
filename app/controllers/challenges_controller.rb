@@ -42,6 +42,6 @@ class ChallengesController < ApplicationController
     end
 
     def challenge_params
-      params.expect(challenge: [ :name ])
+      params.expect(challenge: [ :name, :skill_id ])
     end
 end

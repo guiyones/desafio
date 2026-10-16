@@ -1,19 +1,26 @@
 <% content_for :title, "Editar #{@challenge.name}" %>
 
-<h1>Editar desafio</h1>
+<h1 class="pixel">Editar desafio</h1>
 
-<%= form_with model: @challenge do |form| %>
-  <%= render "shared/errors", record: @challenge %>
+<div class="box">
+  <%= form_with model: @challenge do |form| %>
+    <%= render "shared/errors", record: @challenge %>
 
-  <p>
-    <%= form.label :name, "Nome" %>
-    <%= form.text_field :name %>
-  </p>
+    <p>
+      <%= form.label :name, "Nome" %>
+      <%= form.text_field :name %>
+    </p>
 
-  <%= form.submit "Salvar" %>
-<% end %>
+    <p>
+      <%= form.label :skill_id, "Skill" %>
+      <%= form.collection_select :skill_id, Skill.order(:name), :id, ->(s) { "#{s.icon} #{s.name}" }, include_blank: "— nenhuma —" %>
+    </p>
 
-<%= button_to "Apagar desafio", @challenge, method: :delete, class: "danger",
-      form: { data: { turbo_confirm: "Apagar o desafio e seus vacilos?" } } %>
+    <%= form.submit "Salvar" %>
+  <% end %>
+</div>
 
-<p><%= link_to "Voltar", @challenge.project %></p>
+<p><%= button_to "Apagar desafio", @challenge, method: :delete, class: "button button--danger",
+      form: { data: { turbo_confirm: "Apagar o desafio e seus vacilos?" } } %></p>
+
+<p><%= link_to "Voltar", @challenge.project, class: "button" %></p>

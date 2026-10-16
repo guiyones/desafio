@@ -100,4 +100,11 @@ class ProjectTest < ActiveSupport::TestCase
       @project.destroy
     end
   end
+
+  test "phases split the 75 days into 5 chunks of 15" do
+    assert_equal 1, @project.phase_on(Date.new(2026, 10, 1))
+    assert_equal 1, @project.phase_on(Date.new(2026, 10, 15))
+    assert_equal 2, @project.phase_on(Date.new(2026, 10, 16))
+    assert_equal 5, @project.phase_on(Date.new(2026, 12, 14))
+  end
 end

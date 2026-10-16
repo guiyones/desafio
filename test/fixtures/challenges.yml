@@ -1,11 +1,14 @@
 refri:
   group: alimentacao
   name: Sem refrigerante
+  skill: controle
 
 doce:
   group: alimentacao
   name: Sem doce
+  skill: controle
 
 caminhada:
   group: treino
   name: Caminhar 30min
+  skill: resistencia

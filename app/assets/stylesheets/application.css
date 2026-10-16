@@ -1,121 +1,70 @@
-:root {
-  --bg: #faf8f5;
-  --fg: #222;
-  --muted: #8a857d;
-  --line: #e6e1d9;
-  --kept: #9fd4a8;
-  --slipped: #ef8a5b;
-  --future: #ece8e1;
-  --today: #222;
-  --danger: #c2410c;
-
-  font-family: system-ui, sans-serif;
-  line-height: 1.4;
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("PressStart2P-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1b1a18;
-    --fg: #eee;
-    --muted: #9a948a;
-    --line: #33302c;
-    --kept: #3f7a4a;
-    --slipped: #d0673a;
-    --future: #2a2825;
-    --today: #eee;
-    --danger: #f97316;
-  }
+:root {
+  --bg: #1a1c2c;
+  --box: #262b44;
+  --box-border: #566c86;
+  --hud: #29366f;
+  --hud-border: #f4f4f4;
+  --hud-shadow: 4px 4px 0 #000;
+  --gold: #ffcd75;
+  --green: #38b764;
+  --green-light: #a7f070;
+  --red: #b13e53;
+  --red-light: #ef7d57;
+  --blue: #3b5dc9;
+  --blue-light: #41a6f6;
+  --text: #f4f4f4;
+  --muted: #94b0c2;
+  --dim: #333c57;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   background: var(--bg);
-  color: var(--fg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.4;
 }
 
-main {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 1rem;
+a {
+  color: var(--gold);
+  text-decoration: none;
 }
 
-a { color: inherit; }
-
-.muted {
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: normal;
+a:hover {
+  text-decoration: underline;
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.pixel {
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
-.group {
-  border-top: 1px solid var(--line);
-  margin-top: 1.5rem;
+h1 {
+  font-size: 14px;
+  margin: 0 0 1rem;
 }
 
-.challenge h3 {
-  font-size: 1rem;
-  margin: 1rem 0 0.5rem;
-}
+.muted { color: var(--muted); }
+.gold { color: var(--gold); }
+.green { color: var(--green); }
+.red { color: var(--red); }
 
-.days {
-  display: grid;
-  grid-template-columns: repeat(25, minmax(0, 1fr));
-  gap: 3px;
-}
-
-@media (max-width: 40rem) {
-  .days { grid-template-columns: repeat(7, minmax(0, 3rem)); }
-}
-
-.day form { margin: 0; }
-
-.day button,
-.day a,
-.day span {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  border: 0;
-  padding: 0;
-  border-radius: 3px;
-}
-
-.day--kept button { background: var(--kept); cursor: pointer; }
-.day--slipped a { background: var(--slipped); }
-.day--future span { background: var(--future); }
-
-.day--today :is(button, a, span) {
-  outline: 2px solid var(--today);
-  outline-offset: 1px;
-}
-
-.day :is(button, a):focus-visible {
-  outline: 3px solid var(--slipped);
-  outline-offset: 1px;
-}
-
-.errors { color: var(--danger); }
-
-.danger {
-  background: none;
-  border: 1px solid var(--danger);
-  color: var(--danger);
-  margin-top: 1rem;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  border-bottom: 1px solid var(--line);
-  padding: 0.25rem 0.5rem;
-  text-align: left;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

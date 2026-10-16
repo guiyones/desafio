@@ -41,4 +41,13 @@ class ChallengeTest < ActiveSupport::TestCase
     travel_to_day Date.new(2026, 12, 20)
     assert_equal 74, @challenge.kept_count
   end
+
+  test "xp is kept days times xp per day" do
+    assert_equal 110, @challenge.xp
+  end
+
+  test "a challenge without a skill is still valid" do
+    challenges(:caminhada).update!(skill: nil)
+    assert challenges(:caminhada).valid?
+  end
 end

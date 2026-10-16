@@ -1,0 +1,17 @@
+<%# locals: (skill:) %>
+<%= form_with model: skill do |form| %>
+  <%= render "shared/errors", record: skill %>
+
+  <p>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name, autofocus: true %>
+  </p>
+
+  <p>
+    <%= form.label :icon, "Ícone" %>
+    <%= form.text_field :icon %>
+    <span class="muted">ex.: ⏳ 🛡 🚶 💧 🥗 😴 📚 💪</span>
+  </p>
+
+  <%= form.submit skill.persisted? ? "Salvar" : "Criar skill" %>
+<% end %>
