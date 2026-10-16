@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  include Results
+
   DURATION = 75
 
   has_many :groups, dependent: :destroy

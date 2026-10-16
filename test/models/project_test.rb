@@ -53,4 +53,34 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.errors.added?(:name, :blank)
     assert project.errors.added?(:starts_on, :blank)
   end
+
+  test "counts every slip" do
+    travel_to_day Date.new(2026, 10, 12)
+    assert_equal 3, @project.slips_count
+  end
+
+  test "perfect days are elapsed days without any slip" do
+    travel_to_day Date.new(2026, 10, 12)
+    perfect = @project.perfect_days
+
+    assert_equal 10, perfect.size
+    assert_not_includes perfect, Date.new(2026, 10, 3)
+    assert_not_includes perfect, Date.new(2026, 10, 5)
+  end
+
+  test "no perfect days without challenges" do
+    travel_to_day Date.new(2026, 10, 12)
+    assert_empty projects(:vazio).perfect_days
+  end
+
+  test "timeline lists slips by day" do
+    timeline = @project.slips_timeline
+    assert_equal [ Date.new(2026, 10, 3), Date.new(2026, 10, 3), Date.new(2026, 10, 5) ], timeline.map(&:day)
+  end
+
+  test "destroying removes everything below it" do
+    assert_difference -> { Slip.count } => -3, -> { Challenge.count } => -3, -> { Group.count } => -2 do
+      @project.destroy
+    end
+  end
 end

@@ -25,4 +25,15 @@ class ChallengeTest < ActiveSupport::TestCase
   test "reaches its project through the group" do
     assert_equal projects(:setenta), @challenge.project
   end
+
+  test "counts slips and kept days" do
+    assert_equal 1, @challenge.slips_count
+    assert_equal 11, @challenge.kept_count
+    assert_equal 92, @challenge.kept_percentage
+  end
+
+  test "kept percentage is zero before the start" do
+    travel_to_day Date.new(2026, 9, 20)
+    assert_equal 0, @challenge.kept_percentage
+  end
 end

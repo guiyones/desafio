@@ -16,6 +16,19 @@ class Challenge < ApplicationRecord
     end
   end
 
+  def slips_count
+    slips.count
+  end
+
+  def kept_count
+    project.elapsed_days.count - slips_count
+  end
+
+  def kept_percentage
+    elapsed = project.elapsed_days.count
+    elapsed.zero? ? 0 : (kept_count * 100.0 / elapsed).round
+  end
+
   private
     def slipped_dates
       @slipped_dates ||= slips.pluck(:day).to_set
