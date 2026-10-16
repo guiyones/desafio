@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root "projects#index"
 
+  resources :skills, except: :show
+
   resources :projects do
     scope module: :projects do
       resource :results, only: :show

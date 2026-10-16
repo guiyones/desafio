@@ -1,16 +1,18 @@
 <% content_for :title, "Novo grupo" %>
 
-<h1>Novo grupo em <%= @project.name %></h1>
+<h1 class="pixel">Novo grupo em <%= @project.name %></h1>
 
-<%= form_with model: [ @project, @group ] do |form| %>
-  <%= render "shared/errors", record: @group %>
+<div class="box">
+  <%= form_with model: [ @project, @group ] do |form| %>
+    <%= render "shared/errors", record: @group %>
 
-  <p>
-    <%= form.label :name, "Nome" %>
-    <%= form.text_field :name, autofocus: true %>
-  </p>
+    <p>
+      <%= form.label :name, "Nome" %>
+      <%= form.text_field :name, autofocus: true %>
+    </p>
 
-  <%= form.submit "Criar grupo" %>
-<% end %>
+    <%= form.submit "Criar grupo" %>
+  <% end %>
+</div>
 
-<p><%= link_to "Voltar", @project %></p>
+<p><%= link_to "Voltar", @project, class: "button" %></p>

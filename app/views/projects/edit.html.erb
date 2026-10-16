@@ -1,24 +1,26 @@
 <% content_for :title, "Editar #{@project.name}" %>
 
-<h1>Editar projeto</h1>
+<h1 class="pixel">Editar projeto</h1>
 
-<%= form_with model: @project do |form| %>
-  <%= render "shared/errors", record: @project %>
+<div class="box">
+  <%= form_with model: @project do |form| %>
+    <%= render "shared/errors", record: @project %>
 
-  <p>
-    <%= form.label :name, "Nome" %>
-    <%= form.text_field :name %>
-  </p>
+    <p>
+      <%= form.label :name, "Nome" %>
+      <%= form.text_field :name %>
+    </p>
 
-  <p>
-    <%= form.label :starts_on, "Início" %>
-    <%= form.date_field :starts_on %>
-  </p>
+    <p>
+      <%= form.label :starts_on, "Início" %>
+      <%= form.date_field :starts_on %>
+    </p>
 
-  <%= form.submit "Salvar" %>
-<% end %>
+    <%= form.submit "Salvar" %>
+  <% end %>
+</div>
 
-<%= button_to "Apagar projeto", @project, method: :delete, class: "danger",
-      form: { data: { turbo_confirm: "Apagar o projeto e todos os desafios?" } } %>
+<p><%= button_to "Apagar projeto", @project, method: :delete, class: "button button--danger",
+      form: { data: { turbo_confirm: "Apagar o projeto e todos os desafios?" } } %></p>
 
-<p><%= link_to "Voltar", @project %></p>
+<p><%= link_to "Voltar", @project, class: "button" %></p>

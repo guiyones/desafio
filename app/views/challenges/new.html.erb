@@ -1,16 +1,18 @@
 <% content_for :title, "Novo desafio" %>
 
-<h1>Novo desafio em <%= @group.name %></h1>
+<h1 class="pixel">Novo desafio em <%= @group.name %></h1>
 
-<%= form_with model: [ @group, @challenge ] do |form| %>
-  <%= render "shared/errors", record: @challenge %>
+<div class="box">
+  <%= form_with model: [ @group, @challenge ] do |form| %>
+    <%= render "shared/errors", record: @challenge %>
 
-  <p>
-    <%= form.label :name, "Nome" %>
-    <%= form.text_field :name, autofocus: true %>
-  </p>
+    <p>
+      <%= form.label :name, "Nome" %>
+      <%= form.text_field :name, autofocus: true %>
+    </p>
 
-  <%= form.submit "Criar desafio" %>
-<% end %>
+    <%= form.submit "Criar desafio" %>
+  <% end %>
+</div>
 
-<p><%= link_to "Voltar", @group.project %></p>
+<p><%= link_to "Voltar", @group.project, class: "button" %></p>

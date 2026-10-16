@@ -1,19 +1,21 @@
 <% content_for :title, "Editar #{@group.name}" %>
 
-<h1>Editar grupo</h1>
+<h1 class="pixel">Editar grupo</h1>
 
-<%= form_with model: @group do |form| %>
-  <%= render "shared/errors", record: @group %>
+<div class="box">
+  <%= form_with model: @group do |form| %>
+    <%= render "shared/errors", record: @group %>
 
-  <p>
-    <%= form.label :name, "Nome" %>
-    <%= form.text_field :name %>
-  </p>
+    <p>
+      <%= form.label :name, "Nome" %>
+      <%= form.text_field :name %>
+    </p>
 
-  <%= form.submit "Salvar" %>
-<% end %>
+    <%= form.submit "Salvar" %>
+  <% end %>
+</div>
 
-<%= button_to "Apagar grupo", @group, method: :delete, class: "danger",
-      form: { data: { turbo_confirm: "Apagar o grupo e seus desafios?" } } %>
+<p><%= button_to "Apagar grupo", @group, method: :delete, class: "button button--danger",
+      form: { data: { turbo_confirm: "Apagar o grupo e seus desafios?" } } %></p>
 
-<p><%= link_to "Voltar", @group.project %></p>
+<p><%= link_to "Voltar", @group.project, class: "button" %></p>

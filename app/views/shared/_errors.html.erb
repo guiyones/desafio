@@ -1,8 +1,10 @@
 <%# locals: (record:) %>
 <% if record.errors.any? %>
-  <ul class="errors">
-    <% record.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+  <div class="box errors">
+    <ul>
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

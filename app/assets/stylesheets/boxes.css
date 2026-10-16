@@ -1,0 +1,21 @@
+.box {
+  background: var(--box);
+  border: 3px solid var(--box-border);
+  padding: 10px;
+}
+
+.hud {
+  background: var(--hud);
+  border: 3px solid var(--hud-border);
+  box-shadow: var(--hud-shadow);
+  padding: 10px;
+}
+
+.section-title {
+  font-family: "Press Start 2P", monospace;
+  color: var(--gold);
+  font-size: 10px;
+  line-height: 1.7;
+  margin: 1.25rem 0 0.5rem;
+  overflow-wrap: break-word;
+}

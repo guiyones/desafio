@@ -1,0 +1,48 @@
+label {
+  display: block;
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  color: var(--gold);
+  margin-bottom: 4px;
+  overflow-wrap: break-word;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  background: var(--box);
+  color: var(--text);
+  border: 3px solid var(--box-border);
+  padding: 8px;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.errors {
+  border-color: var(--red);
+  margin-bottom: 1rem;
+}
+
+.errors ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--red-light);
+}
