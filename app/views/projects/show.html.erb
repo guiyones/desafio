@@ -12,7 +12,7 @@
   </nav>
 </header>
 
-<% @project.groups.includes(:challenges).each do |group| %>
+<% @groups.each do |group| %>
   <section class="group">
     <h2><%= group.name %> <%= link_to "editar", edit_group_path(group), class: "muted" %></h2>
 

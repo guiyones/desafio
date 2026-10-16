@@ -1,4 +1,6 @@
 class Challenges::SlipsController < ApplicationController
+  include ActionView::RecordIdentifier
+
   before_action :set_challenge
   before_action :set_slip, only: %i[ edit update destroy ]
 
@@ -8,7 +10,7 @@ class Challenges::SlipsController < ApplicationController
     if @slip.save
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to @challenge.project }
+        format.html { redirect_to project_path(@challenge.project, anchor: dom_id(@challenge)) }
       end
     else
       head :unprocessable_content
@@ -19,13 +21,16 @@ class Challenges::SlipsController < ApplicationController
   end
 
   def update
-    @slip.update!(slip_params)
-    redirect_to @challenge.project
+    if @slip.update(slip_params)
+      redirect_to project_path(@challenge.project, anchor: dom_id(@challenge))
+    else
+      render :edit, status: :unprocessable_content
+    end
   end
 
   def destroy
     @slip.destroy
-    redirect_to @challenge.project, status: :see_other
+    redirect_to project_path(@challenge.project, anchor: dom_id(@challenge)), status: :see_other
   end
 
   private

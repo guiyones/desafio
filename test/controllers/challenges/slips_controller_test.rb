@@ -14,11 +14,12 @@ class Challenges::SlipsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_turbo_stream action: :replace, target: "day_2026-10-10_challenge_#{@challenge.id}"
     assert_turbo_stream action: :replace, target: "perfect_days"
+    assert_match edit_challenge_slip_path(@challenge, "2026-10-10"), response.body
   end
 
   test "marks a slip without turbo" do
     post challenge_slips_path(@challenge), params: { day: "2026-10-10" }
-    assert_redirected_to project_path(projects(:setenta))
+    assert_redirected_to project_path(projects(:setenta), anchor: dom_id(@challenge))
   end
 
   test "refuses a future day" do
@@ -51,7 +52,7 @@ class Challenges::SlipsControllerTest < ActionDispatch::IntegrationTest
 
   test "updates the note" do
     patch challenge_slip_path(@challenge, "2026-10-03"), params: { slip: { note: "bolo da tia" } }
-    assert_redirected_to project_path(projects(:setenta))
+    assert_redirected_to project_path(projects(:setenta), anchor: dom_id(@challenge))
     assert_equal "bolo da tia", slips(:refri_day3).reload.note
   end
 
@@ -59,6 +60,6 @@ class Challenges::SlipsControllerTest < ActionDispatch::IntegrationTest
     assert_difference -> { @challenge.slips.count }, -1 do
       delete challenge_slip_path(@challenge, "2026-10-03")
     end
-    assert_redirected_to project_path(projects(:setenta))
+    assert_redirected_to project_path(projects(:setenta), anchor: dom_id(@challenge))
   end
 end

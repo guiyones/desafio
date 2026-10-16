@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @groups = @project.groups.order(:id).includes(challenges: :slips)
   end
 
   def new

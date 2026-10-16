@@ -1,5 +1,5 @@
 <%# locals: (challenge:) %>
-<article class="challenge">
+<article class="challenge" id="<%= dom_id(challenge) %>">
   <h3><%= challenge.name %> <%= link_to "editar", edit_challenge_path(challenge), class: "muted" %></h3>
 
   <div class="days">

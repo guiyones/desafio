@@ -13,6 +13,6 @@ module Project::Results
   end
 
   def slips_timeline
-    slips.includes(:challenge).order(:day, :id)
+    slips.includes(:challenge).reorder(:day, :id)
   end
 end

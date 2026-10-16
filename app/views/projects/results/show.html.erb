@@ -13,7 +13,7 @@
   <dd id="slips_count"><%= @project.slips_count %></dd>
 </dl>
 
-<% @project.groups.includes(:challenges).each do |group| %>
+<% @groups.each do |group| %>
   <h2><%= group.name %> <span class="muted"><%= pluralize group.slips_count, "vacilo" %></span></h2>
 
   <table>
@@ -40,7 +40,7 @@
 
 <h2>Vacilos</h2>
 
-<% timeline = @project.slips_timeline %>
+<% timeline = @project.slips_timeline.load %>
 <% if timeline.any? %>
   <ol class="timeline">
     <% timeline.each do |slip| %>
