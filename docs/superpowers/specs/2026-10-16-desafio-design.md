@@ -23,8 +23,10 @@ Uso: local, no notebook, um único usuário. Sem login, sem deploy.
 Project   name, starts_on (date)                    has_many :groups
 Group     project_id, name                           has_many :challenges
 Challenge group_id, name                             has_many :slips
-Slip      challenge_id, on (date), note (text, null) unique index [challenge_id, on]
+Slip      challenge_id, day (date), note (text, null) unique index [challenge_id, day]
 ```
+
+A coluna se chama `day` (e não `on`) porque `ON` é palavra reservada em SQL.
 
 Ordem de exibição de grupos e desafios: ordem de criação (`id`). Sem coluna `position`.
 
@@ -44,7 +46,7 @@ Todos os `has_many` com `dependent: :destroy`.
 ### Estado de um dia (`Challenge#status_on(date)`)
 
 - `:future` — `date > Date.current`. Não pode ser marcado.
-- `:slipped` — existe `Slip` com `on: date`.
+- `:slipped` — existe `Slip` com `day: date`.
 - `:kept` — `date <= Date.current` e sem `Slip`.
 
 Hoje conta como `:kept` desde o início do dia; um vacilo à noite é marcado com um toque.
@@ -54,9 +56,9 @@ Para evitar N+1 na grade, o challenge carrega os slips uma vez e consulta um `Se
 
 ### Validações do `Slip`
 
-- `on` presente, único por challenge
-- `on` dentro de `challenge.group.project.days`
-- `on <= Date.current`
+- `day` presente, único por challenge
+- `day` dentro de `challenge.group.project.days`
+- `day <= Date.current`
 
 Depois que o projeto termina, vacilos antigos continuam editáveis (marcar, desmarcar, nota).
 
@@ -87,7 +89,7 @@ resources :projects do
 end
 resources :challenges, only: [] do
   resources :slips, only: [:create, :edit, :update, :destroy],
-                    module: :challenges, param: :on
+                    module: :challenges, param: :day
 end
 ```
 
@@ -106,9 +108,9 @@ Lista de projetos. Se existe exatamente um, redireciona pra ele.
 
 ### Marcar e desmarcar
 
-- Quadrado `:kept` → `button_to` com `POST /challenges/:id/slips` (`on: date`). Resposta
+- Quadrado `:kept` → `button_to` com `POST /challenges/:id/slips` (`day: date`). Resposta
   turbo_stream substitui aquele quadrado e o contador de dias perfeitos.
-- Quadrado `:slipped` → link pra `GET /challenges/:id/slips/:on/edit`: form com campo de nota
+- Quadrado `:slipped` → link pra `GET /challenges/:id/slips/:day/edit`: form com campo de nota
   (salvar → `PATCH`) e botão "remover vacilo" (`DELETE`). Ambos redirecionam pro projeto.
 - Quadrado `:future` → não clicável.
 - Data inválida (fora do projeto, futura) → 422.
