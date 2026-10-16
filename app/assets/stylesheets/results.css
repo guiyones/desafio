@@ -1,0 +1,82 @@
+.result-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.result-stats__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+}
+
+.results-table-wrap {
+  overflow-x: auto;
+}
+
+.results-table {
+  width: 100%;
+  min-width: 380px;
+  border-collapse: collapse;
+}
+
+.results-table th {
+  font-family: "Press Start 2P", monospace;
+  color: var(--gold);
+  font-size: 8px;
+  text-align: left;
+  padding: 0 6px 8px;
+  border-bottom: 2px solid var(--box-border);
+  white-space: nowrap;
+}
+
+.results-table td {
+  padding: 6px;
+  border-bottom: 1px solid var(--box-border);
+  white-space: nowrap;
+}
+
+.results-table td:first-child {
+  white-space: normal;
+}
+
+.results-table th:last-child,
+.results-table td:last-child {
+  text-align: right;
+}
+
+.results-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+}
+
+.timeline li {
+  padding: 4px 0;
+}
+
+.timeline li::before {
+  content: "✖ ";
+  color: var(--red-light);
+}
+
+@media (max-width: 40rem) {
+  .results-table {
+    min-width: 0;
+  }
+
+  .results-table th {
+    font-size: 7px;
+    padding: 0 4px 6px;
+  }
+
+  .results-table td {
+    padding: 4px;
+    font-size: 13px;
+  }
+}

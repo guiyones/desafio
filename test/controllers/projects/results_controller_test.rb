@@ -10,8 +10,8 @@ class Projects::ResultsControllerTest < ActionDispatch::IntegrationTest
     assert_select "#elapsed_days_count", "12 de 75"
     assert_select "#perfect_days_count", "10"
     assert_select "#slips_count", "3"
-    assert_select "tr", text: /Sem refrigerante\s+1\s+11\s+92%/
-    assert_select "tr", text: /Sem doce\s+2\s+10\s+83%/
+    assert_select "tr", text: /Sem refrigerante\s+1\s+11\s+92%\s+110 XP/
+    assert_select "tr", text: /Sem doce\s+2\s+10\s+83%\s+100 XP/
     assert_select "li", text: "Dia 3 · Sem refrigerante · aniversário"
     assert_select "li", text: "Dia 5 · Sem doce"
   end
