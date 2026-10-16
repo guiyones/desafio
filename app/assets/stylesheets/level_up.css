@@ -14,6 +14,22 @@
   margin-top: 6px;
 }
 
+.lvlup__dismiss {
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: var(--text);
+  background: var(--dim);
+  border: 2px solid var(--gold);
+  padding: 4px 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.lvlup__dismiss:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
 @keyframes lvlup-blink {
   50% { border-color: var(--text); }
 }

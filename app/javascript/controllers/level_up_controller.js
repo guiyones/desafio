@@ -7,6 +7,8 @@ export default class extends Controller {
   static values = { skills: Array }
 
   connect() {
+    this.element.hidden = true
+
     const skills = this.skillsValue
     if (skills.length === 0) return
 

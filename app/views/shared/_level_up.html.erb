@@ -1,11 +1,14 @@
 <%# locals: (skills:) %>
 <div
   class="lvlup"
+  role="status"
   data-controller="level-up"
   data-action="click->level-up#dismiss"
   data-level-up-skills-value="<%= skills.map { |skill| { id: skill.id, name: skill.name, level: skill.level.number } }.to_json %>"
+  data-turbo-temporary
   hidden
 >
   <p class="pixel gold" data-level-up-target="headline"></p>
   <p class="pixel lvlup__lines" data-level-up-target="lines"></p>
+  <button type="button" class="pixel lvlup__dismiss" data-action="level-up#dismiss">fechar</button>
 </div>

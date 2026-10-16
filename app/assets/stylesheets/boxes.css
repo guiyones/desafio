@@ -11,6 +11,8 @@
   padding: 10px;
 }
 
+.hud .red { color: var(--red-light); }
+
 .section-title {
   font-family: "Press Start 2P", monospace;
   color: var(--gold);
