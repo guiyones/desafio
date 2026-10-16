@@ -1,0 +1,19 @@
+<% content_for :title, "Novo projeto" %>
+
+<h1>Novo projeto</h1>
+
+<%= form_with model: @project do |form| %>
+  <%= render "shared/errors", record: @project %>
+
+  <p>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name, autofocus: true %>
+  </p>
+
+  <p>
+    <%= form.label :starts_on, "Início" %>
+    <%= form.date_field :starts_on %>
+  </p>
+
+  <%= form.submit "Criar projeto" %>
+<% end %>

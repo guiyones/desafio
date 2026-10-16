@@ -1,0 +1,23 @@
+<% content_for :title, @project.name %>
+
+<header class="project-header">
+  <h1><%= @project.name %></h1>
+  <p class="muted"><%= project_progress(@project) %> · <%= render "projects/perfect_days", project: @project %></p>
+
+  <nav class="actions">
+    <%= link_to "Resultado", project_results_path(@project) %>
+    <%= link_to "Novo grupo", new_project_group_path(@project) %>
+    <%= link_to "Editar projeto", edit_project_path(@project) %>
+    <%= link_to "Novo projeto", new_project_path %>
+  </nav>
+</header>
+
+<% @project.groups.includes(:challenges).each do |group| %>
+  <section class="group">
+    <h2><%= group.name %> <%= link_to "editar", edit_group_path(group), class: "muted" %></h2>
+
+    <%= render group.challenges %>
+
+    <p><%= link_to "Novo desafio", new_group_challenge_path(group) %></p>
+  </section>
+<% end %>

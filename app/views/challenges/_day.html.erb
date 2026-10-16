@@ -1,0 +1,14 @@
+<%# locals: (challenge:, date:) %>
+<% status = challenge.status_on(date) %>
+<% label = "Dia #{challenge.project.day_number(date)}" %>
+<div id="<%= dom_id(challenge, "day_#{date.iso8601}") %>"
+     class="day day--<%= status %><%= " day--today" if date == Date.current %>"
+     title="<%= date.strftime("%d/%m") %>">
+  <% if status == :kept %>
+    <%= button_to "", challenge_slips_path(challenge), params: { day: date.iso8601 }, aria: { label: "#{label}: marcar vacilo" } %>
+  <% elsif status == :slipped %>
+    <%= link_to "", edit_challenge_slip_path(challenge, date.iso8601), aria: { label: "#{label}: vacilo, editar" } %>
+  <% else %>
+    <span aria-label="<%= label %>"></span>
+  <% end %>
+</div>
